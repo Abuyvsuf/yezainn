@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yeza Inn 悦在民宿 | Kilimani, Nairobi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;600&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black-primary: #0A0A0A;
+      --black-deep: #050505;
+      --crimson-accent: #C0182A;
+      --crimson-light: #E03248;
+      --crimson-glow: rgba(192, 24, 42, 0.35);
+      --white-primary: #FFFFFF;
+      --off-white: #F5F5F5;
+      --light-grey: #EEEEEE;
+      --glass-surface: rgba(255, 255, 255, 0.06);
+      --glass-border: rgba(192, 24, 42, 0.35);
+      --text-light: #FFFFFF;
+      --text-dark: #0A0A0A;
+      --pinstripe: repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0px, rgba(255, 255, 255, 0.02) 1px, transparent 1px, transparent 8px);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Inter, "Noto Sans SC", sans-serif; background: var(--black-deep); color: var(--text-light); scroll-behavior: smooth; }
+    .zh h1,.zh h2,.zh h3,.zh h4,.zh .logo-word{font-family:"Noto Serif SC", serif;} .zh body,.zh p,.zh li,.zh a,.zh input,.zh select,.zh textarea,.zh button{font-family:"Noto Sans SC",sans-serif;}
+    h1,h2,h3,h4 { font-family: "Playfair Display", "Noto Serif SC", serif; }
+    img { width:100%; display:block; object-fit: cover; }
+    .section { padding: 5rem 1rem; position: relative; overflow: hidden; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .dark-gradient { background: linear-gradient(180deg, var(--black-deep), var(--black-primary)); }
+    .pinstripe::before{content:""; position:absolute; inset:0; background:var(--pinstripe); pointer-events:none;}
+    .glass { background: rgba(255,255,255,.05); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border:1px solid rgba(192,24,42,.4); border-radius:4px; box-shadow:0 8px 40px rgba(0,0,0,.6),0 0 20px rgba(192,24,42,.08),inset 0 1px 0 rgba(255,255,255,.08); }
+    .bokeh span {position:absolute; border-radius:50%; filter: blur(2px); opacity:.16; animation:float 16s ease-in-out infinite alternate;}
+    @keyframes float{from{transform:translateY(0) translateX(0)}to{transform:translateY(-40px) translateX(25px)}}
+    .label{letter-spacing:.22em; text-transform:uppercase; color:var(--crimson-accent); font-size:.78rem;}
+    .btn{padding:.85rem 1.2rem; border-radius:4px; border:1px solid var(--crimson-accent); color:#fff; text-decoration:none; display:inline-block; position:relative; overflow:hidden;}
+    .btn.primary{background:var(--crimson-accent);} .btn.ghost{background:rgba(255,255,255,.08); border-color:#fff;}
+    .btn::after{content:""; position:absolute; top:0; left:-120%; width:80%; height:100%; background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent); transition:.55s;} .btn:hover::after{left:140%;}
+    .card:hover{transform:translateY(-4px); box-shadow:0 8px 40px rgba(0,0,0,.6), 0 0 30px rgba(192,24,42,.3), inset 0 1px 0 rgba(255,255,255,.08);} .card{transition:.35s ease;}
+
+    nav {position:fixed; top:0; left:0; right:0; z-index:20; padding:.8rem 1rem; background:transparent; transition:.3s;}
+    nav.scrolled{background:rgba(5,5,5,.92); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);} .nav-inner{display:flex; align-items:center; justify-content:space-between; gap:1rem;}
+    .logo{display:flex; align-items:center; gap:.7rem;} .seal{width:38px;height:38px}
+    .logo-word b{font-size:1.05rem;} .logo-word small{display:block; color:var(--crimson-accent)}
+    .nav-links{display:flex; gap:1rem;} .nav-links a{color:#fff; text-decoration:none; font-size:.88rem; letter-spacing:.06em}
+    .lang-toggle{display:flex; background:rgba(255,255,255,.1); border:1px solid var(--glass-border); border-radius:40px; overflow:hidden}
+    .lang-toggle button{background:transparent; color:#fff; border:0; padding:.35rem .7rem; cursor:pointer} .lang-toggle .active{background:var(--crimson-accent)}
+    .hamburger{display:none; background:none; border:0; color:#fff; font-size:1.5rem}
+
+    .hero{min-height:100vh; display:grid; place-items:center; text-align:center; background: linear-gradient(rgba(5,5,5,.78), rgba(5,5,5,.92)), url('https://ak-d.tripcdn.com/images/1mc2z12000ldx5l1x783F_R_1200_800_R5_D.jpg') center/cover fixed; padding-top:5rem;}
+    .hero h1{font-size:clamp(2.2rem,7vw,4.75rem); margin:.9rem 0}
+    .hero p{max-width:680px; margin:0 auto 1.5rem; color:#f1f1f1}
+    .pill{margin-top:1.2rem; padding:.65rem 1rem; display:inline-block; border:1px solid var(--crimson-accent); border-radius:999px; background:rgba(255,255,255,.05)}
+
+    .grid{display:grid; gap:1rem;} .rooms{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+    .room img{height:170px; border-radius:4px 4px 0 0;} .price{position:absolute; top:10px; right:10px; background:var(--crimson-accent); padding:.3rem .55rem; border-radius:4px; font-size:.85rem}
+    .room .body{padding:1rem;} .features{font-size:.85rem; color:#ddd; margin:.6rem 0 1rem}
+    .amenities{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
+    .amenity{padding:1rem; color:var(--text-dark); background:rgba(255,255,255,.4)}
+    .two{display:grid; grid-template-columns:1fr 1fr; gap:1rem}
+    .gallery{columns:3 220px; column-gap:1rem;} .gallery-item{break-inside:avoid; margin-bottom:1rem; position:relative; overflow:hidden; border-radius:4px}
+    .gallery-item img{transition:.35s; height:100%} .gallery-item:hover img{transform:scale(1.04)} .overlay{position:absolute; inset:0; background:rgba(192,24,42,.3); opacity:0; transition:.3s; display:grid; place-items:center;} .gallery-item:hover .overlay{opacity:1}
+    form .grid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+    input,select,textarea{width:100%; padding:.7rem; background:rgba(255,255,255,.08); border:1px solid var(--glass-border); color:#fff; border-radius:4px}
+    textarea{min-height:100px} input:focus,select:focus,textarea:focus{outline:none; border-color:var(--crimson-light); box-shadow:0 0 0 2px rgba(192,24,42,.2)}
+    .reveal{opacity:0; transform:translateY(26px); transition:.7s ease;} .reveal.show{opacity:1; transform:none;}
+    footer{padding:2rem 1rem; text-align:center; background:var(--black-deep); position:relative}
+
+    .mobile-menu{display:none; position:fixed; inset:0; background:rgba(5,5,5,.97); z-index:19; padding:5rem 2rem}
+    .mobile-menu a{display:block; color:#fff; text-decoration:none; margin:1rem 0; font-size:1.2rem}
+    @media (max-width:900px){.nav-links{display:none}.hamburger{display:block}.two{grid-template-columns:1fr}.hero{background-attachment:scroll}}
+  </style>
+</head>
+<body>
+  <nav id="nav"><div class="container nav-inner"><div class="logo"><svg class="seal" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#C0182A" stroke-width="8"/><path d="M28 34h44v32H28z" stroke="#C0182A" stroke-width="7"/><path d="M36 44h28M36 56h28" stroke="#C0182A" stroke-width="6"/></svg><div class="logo-word"><b>YEZA INN</b><small>悦在民宿</small></div></div><div class="nav-links"><a href="#rooms" data-en="Rooms" data-zh="客房">Rooms</a><a href="#amenities" data-en="Amenities" data-zh="设施">Amenities</a><a href="#dining" data-en="Dining" data-zh="餐饮">Dining</a><a href="#location" data-en="Location" data-zh="位置">Location</a><a href="#contact" data-en="Contact" data-zh="预订">Contact</a></div><div style="display:flex;gap:.6rem;align-items:center"><div class="lang-toggle"><button id="enBtn" class="active">EN</button><button id="zhBtn">中文</button></div><a class="btn primary" href="#contact" data-en="Book Now" data-zh="预订">Book Now</a><button class="hamburger" id="hamb">☰</button></div></div></nav>
+  <div class="mobile-menu" id="mobileMenu"><a href="#rooms" data-en="Rooms" data-zh="客房">Rooms</a><a href="#amenities" data-en="Amenities" data-zh="设施">Amenities</a><a href="#dining" data-en="Dining" data-zh="餐饮">Dining</a><a href="#location" data-en="Location" data-zh="位置">Location</a><a href="#contact" data-en="Contact" data-zh="预订">Contact</a></div>
+
+  <section class="hero section pinstripe"><div class="bokeh"><span style="width:140px;height:140px;background:#C0182A;left:8%;top:22%"></span><span style="width:120px;height:120px;background:#fff;right:12%;top:15%;animation-duration:20s"></span><span style="width:90px;height:90px;background:#C0182A;right:22%;bottom:15%;animation-duration:13s"></span><span style="width:80px;height:80px;background:#fff;left:20%;bottom:18%;animation-duration:18s"></span></div><div class="container reveal"><p class="label" data-en="✦ KILIMANI · NAIROBI ✦" data-zh="✦ 内罗毕 · 基里马尼 ✦">✦ KILIMANI · NAIROBI ✦</p><h1 data-en="A Quiet Place Far From Home" data-zh="为远赴非洲的旅行者，辟一方静寂归处">A Quiet Place Far From Home</h1><p data-en="Nairobi's Wabi-Sabi retreat for the modern business traveller." data-zh="侘寂美学 · 安静的商务民宿 · 中英斯三语服务">Nairobi's Wabi-Sabi retreat for the modern business traveller.</p><div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap"><a class="btn primary" href="#rooms" data-en="Explore Rooms" data-zh="查看客房">Explore Rooms</a><a class="btn ghost glass" href="#contact" data-en="Book Your Stay" data-zh="立即预订">Book Your Stay</a></div><div class="pill" data-en="📶 High-Speed Wi-Fi · 🍜 Chinese Cuisine · 🗣️ Trilingual Staff · 🅿️ Free Parking" data-zh="📶 高速Wi-Fi · 🍜 中式餐饮 · 🗣️ 三语服务 · 🅿️ 免费停车">📶 High-Speed Wi-Fi · 🍜 Chinese Cuisine · 🗣️ Trilingual Staff · 🅿️ Free Parking</div></div></section>
+
+  <section id="rooms" class="section dark-gradient pinstripe"><div class="container"><h2 class="reveal" data-en="Your Space. Your Pace." data-zh="您的空间，您的节奏">Your Space. Your Pace.</h2><div class="grid rooms" style="margin-top:1rem">
+    <article class="glass card room reveal"><div style="position:relative"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1re6m12000b87h4ih2D60_R_1200_800_R5.webp"><span class="price">$58/night</span></div><div class="body"><h3>Deluxe King Room / 豪华大床房</h3><p>1 Queen · 18–20m²</p><p class="features">📶 Wi-Fi · 🚿 Private Bath · 🧹 Housekeeping · 🛎️ Butler</p><a class="btn primary" href="#contact">Book This Room / 预订此房</a></div></article>
+    <article class="glass card room reveal"><div style="position:relative"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z63z12000kq69ppd927A_R_1200_800_R5_D.jpg"><span class="price">$50/night</span></div><div class="body"><h3>Standard Queen Room / 标准大床房</h3><p>1 Double · 17–18m²</p><p class="features">📶 Wi-Fi · 🚿 Private Bath · 🧹 Housekeeping · 🛎️ Butler</p><a class="btn primary" href="#contact">Book This Room / 预订此房</a></div></article>
+    <article class="glass card room reveal"><div style="position:relative"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc5k12000krzcszcF8EE_R_1200_800_R5_D.jpg"><span class="price">$50/night</span></div><div class="body"><h3>Standard Room / 标准间</h3><p>1 Double · 18m²</p><p class="features">📶 Wi-Fi · 🚿 Private Bath · 🧹 Housekeeping · 🛎️ Butler</p><a class="btn primary" href="#contact">Book This Room / 预订此房</a></div></article>
+    <article class="glass card room reveal"><div style="position:relative"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z64j12000kq69ef31CF4_R_1200_800_R5_D.jpg"><span class="price">$42/night</span></div><div class="body"><h3>Budget Single Room / 经济单人间</h3><p>1 Double · 10m²</p><p class="features">📶 Wi-Fi · 🚿 Private Bath · 🧹 Housekeeping · 🛎️ Butler</p><a class="btn primary" href="#contact">Book This Room / 预订此房</a></div></article>
+    <article class="glass card room reveal"><div style="position:relative"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z62d12000kq67i3pB3C4_R_1200_800_R5_D.jpg"><span class="price">$65/night</span></div><div class="body"><h3>Twin / 2-Bed Room / 双床房</h3><p>2 Queens · 24–25m²</p><p class="features">📶 Wi-Fi · 🚿 Private Bath · 🧹 Housekeeping · 🛎️ Butler</p><a class="btn primary" href="#contact">Book This Room / 预订此房</a></div></article>
+  </div></div></section>
+
+  <section id="amenities" class="section" style="background:#F5F5F5;color:#0A0A0A"><div class="container"><h2 data-en="Everything a Traveller Needs." data-zh="旅行者所需，应有尽有">Everything a Traveller Needs.</h2><div class="grid amenities" style="margin-top:1rem"><div class="glass amenity">📶 Free High-Speed Wi-Fi | 免费高速WiFi</div><div class="glass amenity">🍜 Chinese Cuisine | 中式餐饮</div><div class="glass amenity">🧺 24-Hr Self-Service Laundry | 24小时自助洗衣</div><div class="glass amenity">🅿️ Free On-Site Parking | 免费停车</div><div class="glass amenity">🛎️ Trilingual Concierge | 三语管家服务</div><div class="glass amenity">🚗 Business Vehicle Rental | 商务包车</div><div class="glass amenity">🏋️ Gym (Next Door) | 健身房（隔壁）</div><div class="glass amenity">📚 Library & Co-Working | 图书馆/办公区</div><div class="glass amenity">🔒 24-Hr Security | 24小时安保</div><div class="glass amenity">🐾 Pet Friendly | 宠物友好</div></div></div></section>
+
+  <section id="dining" class="section dark-gradient"><div class="container"><img class="glass" loading="lazy" style="height:270px" src="https://ak-d.tripcdn.com/images/1z64i12000kq6amhk71A7_R_1200_800_R5_D.jpg"><div class="two" style="margin-top:1rem"><div class="glass card" style="padding:1rem"><h3>The Kitchen / 厨房</h3><p>Chinese a la carte breakfast 7–10AM · tomato egg noodles · Asian cuisine.</p><p><em>A taste of home, 7,000 km from home. | 离家7000公里，也能吃到家的味道。</em></p></div><div class="glass card" style="padding:1rem"><h3>Tea Room & Lounge / 茶室</h3><p>Lobby bar · Chinese tea · light bites · quiet co-working corner.</p><p><em>Where every morning starts with intention. | 每一个清晨，都从一杯茶开始。</em></p></div></div><div class="glass" style="padding:1rem;margin-top:1rem">“The tomato egg noodles were delicious.” — Guest, March 2026 (Trip.com ★★★★★)</div></div></section>
+
+  <section id="location" class="section" style="background:#EEE;color:#0A0A0A"><div class="container"><h2 data-en="Perfectly Placed." data-zh="得天独厚的地理位置">Perfectly Placed.</h2><div class="two" style="margin-top:1rem"><iframe src="https://www.openstreetmap.org/export/embed.html?bbox=36.7846%2C-1.2940%2C36.7886%2C-1.2900&layer=mapnik&marker=-1.2919%2C36.7866" width="100%" height="380" style="border:0;border-radius:12px;border:1px solid rgba(192,24,42,0.4);" loading="lazy"></iframe><div class="grid"><div class="glass amenity">🏪 Carrefour Supermarket — 100m | 家乐福超市 — 100米</div><div class="glass amenity">🇨🇳 Zhonghua Street — 500m | 中华街 — 500米</div><div class="glass amenity">🛍️ Yaya Centre Mall — 1km | 亚亚购城 — 1公里</div><div class="glass amenity">🏥 Nairobi Hospital — 1.6km | 内罗毕医院 — 1.6公里</div><div class="glass amenity">⛳ Royal Nairobi Golf Club — 0.9km | 皇家高尔夫球场 — 0.9公里</div><div class="glass amenity">✈️ Wilson Airport — 5.3km | 威尔逊机场 — 5.3公里</div><div class="glass amenity">🏢 KICC / CBD — 4km | 肯雅塔国际会议中心 — 4公里</div></div></div></div></section>
+
+  <section class="section" style="background:#F5F5F5;color:#0A0A0A"><div class="container two"><img class="glass" loading="lazy" src="https://ak-d.tripcdn.com/images/1mc2s12000krz4vg83D3E_R_1200_800_R5_D.jpg"><div class="glass" style="padding:1rem"><p class="label">OUR STORY / 关于我们</p><h2>Wabi-Sabi in the Heart of Nairobi / 内罗毕的侘寂美学</h2><p>Yeza Inn 悦在民宿 is a boutique aparthotel nestled within Kindaruma Homes Apartments, Kilimani. Opened in 2025 and built for one purpose: to give business travellers venturing to Africa a serene, home-like sanctuary. With trilingual staff (Chinese, English, Swahili), a Chinese restaurant, and 9 carefully designed rooms, Yeza Inn blends the quiet intentionality of Wabi-Sabi with Kenyan warmth.</p><p>悦在民宿坐落于内罗毕基里马尼区，2025年开业，专为赴非洲出行的商务旅行者打造。我们提供中英斯三语管家服务、中式餐饮及9间精心设计的客房，将侘寂美学融入肯尼亚的温暖之中。</p><p style="color:#C0182A">9 Rooms / 9间客房 · Opened 2025 / 2025年开业 · 8.4/10 Rating</p><p><em style="color:#C0182A">P.S. Our resident cat Mimi says hello. 🐱 | 温馨提示：驻店猫咪Mimi欢迎您！🐱</em></p></div></div></section>
+
+  <section class="section dark-gradient" id="gallery"><div class="container"><h2>Gallery / 画廊</h2><div class="gallery" style="margin-top:1rem">
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc2z12000ldx5l1x783F_R_1200_800_R5_D.jpg"><div class="overlay">Common Areas</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc2s12000krz4vg83D3E_R_1200_800_R5_D.jpg"><div class="overlay">Rooms</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z63z12000kq69ppd927A_R_1200_800_R5_D.jpg"><div class="overlay">Rooms</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc5k12000krzcszcF8EE_R_1200_800_R5_D.jpg"><div class="overlay">Rooms</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z64j12000kq69ef31CF4_R_1200_800_R5_D.jpg"><div class="overlay">Rooms</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z62d12000kq67i3pB3C4_R_1200_800_R5_D.jpg"><div class="overlay">Rooms</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1z64i12000kq6amhk71A7_R_1200_800_R5_D.jpg"><div class="overlay">Dining</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1mc0b12000krzcw4j316B_R_1200_800_R5.webp"><div class="overlay">Common Areas</div></div>
+    <div class="gallery-item"><img loading="lazy" src="https://ak-d.tripcdn.com/images/1re6m12000b87h4ih2D60_R_1200_800_R5.webp"><div class="overlay">Rooms</div></div>
+  </div></div></section>
+
+  <section id="contact" class="section dark-gradient pinstripe"><div class="container" style="max-width:860px"><h2 data-en="Reserve Your Stay" data-zh="预订您的住宿">Reserve Your Stay</h2><form class="glass" id="bookingForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" style="padding:1rem;margin-top:1rem"><!-- REPLACE: Sign up free at https://formspree.io and paste your Form ID here -->
+    <div class="grid"><input required placeholder="Full Name | 姓名" name="name"><input required type="email" placeholder="Email | 邮箱" name="email"><input required placeholder="Phone | 电话" name="phone"><input required type="date" name="checkin"><input required type="date" name="checkout"><select name="room"><option>Deluxe King Room / 豪华大床房</option><option>Standard Queen Room / 标准大床房</option><option>Standard Room / 标准间</option><option>Budget Single Room / 经济单人间</option><option>Twin / 2-Bed Room / 双床房</option></select><input type="number" min="1" max="4" value="1" name="guests"></div><textarea name="requests" placeholder="Special Requests | 特殊需求"></textarea><div style="margin:.8rem 0">Reply Language / 回复语言: <label><input type="radio" name="reply" checked value="English"> English</label> <label><input type="radio" name="reply" value="中文"> 中文</label></div><button class="btn primary" style="width:100%" type="submit" data-en="Confirm Reservation" data-zh="确认预订">Confirm Reservation</button></form><div id="success" class="glass" style="display:none;padding:1rem;margin-top:1rem">✅ Reservation inquiry sent / 预订请求已发送。📞 +254 769 264 604 · ✉️ 78600123@qq.com</div></div></section>
+
+  <footer class="pinstripe"><div class="logo" style="justify-content:center;margin-bottom:.6rem"><svg class="seal" viewBox="0 0 100 100" fill="none"><circle cx="50" cy="50" r="45" stroke="#C0182A" stroke-width="8"/></svg><div class="logo-word"><b>YEZA INN</b><small>悦在民宿</small></div></div><p>📞 +254 769 264 604 · ✉️ 78600123@qq.com · 📍 Kindaruma Homes Apt, Kindaruma Rd, Kilimani, Nairobi</p><hr style="margin:1rem auto;max-width:700px;border-color:#C0182A"><small>© 2026 Yeza Inn 悦在民宿. All rights reserved. · Kilimani, Nairobi, Kenya</small></footer>
+<script>
+const nav=document.getElementById('nav'); addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40));
+const obs=new IntersectionObserver((es)=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+const hamburger=document.getElementById('hamb'),mm=document.getElementById('mobileMenu');hamburger.onclick=()=>mm.style.display=mm.style.display==='block'?'none':'block';
+const setLang=(lang)=>{localStorage.setItem('lang',lang);document.documentElement.lang=lang==='zh'?'zh':'en';document.body.classList.toggle('zh',lang==='zh');document.querySelectorAll('[data-en][data-zh]').forEach(el=>el.textContent=el.dataset[lang]);document.getElementById('enBtn').classList.toggle('active',lang==='en');document.getElementById('zhBtn').classList.toggle('active',lang==='zh');};
+document.getElementById('enBtn').onclick=()=>setLang('en');document.getElementById('zhBtn').onclick=()=>setLang('zh');setLang(localStorage.getItem('lang')||'en');
+const form=document.getElementById('bookingForm');form.addEventListener('submit',e=>{const ci=form.checkin.value,co=form.checkout.value;if(ci&&co&&co<=ci){e.preventDefault();alert('Check-out must be after check-in / 退房日期必须晚于入住日期');return;} e.preventDefault();document.getElementById('success').style.display='block';form.reset();});
+</script>
+</body></html>
